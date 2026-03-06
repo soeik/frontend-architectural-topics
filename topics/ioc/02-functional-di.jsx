@@ -15,21 +15,7 @@ const saveWithAxios = createUser(axiosInstance);
 const mockClient = { post: () => Promise.resolve({ id: 1 }) };
 const saveWithMock = createUser(mockClient);
 
-// BEFORE
-jest.mock("./api");
-s;
-import { api } from "./api";
-api.getUser.mockResolvedValue(data);
-
-// AFTER
-const mockApi = { getUser: () => Promise.resolve(data) };
-render(
-  <UserContext.Provider value={mockApi}>
-    <UserProfile />
-  </UserContext.Provider>,
-);
-
-// Key takeaway for the team: DI is fundamentally just parameterization.
+// Key takeaway: DI is fundamentally just parameterization.
 // If you hardcode an import, you lose control. If you pass it as an argument, you keep it.
 
 // 2. React Level: Props-based DI
@@ -50,7 +36,7 @@ const UserList = ({ fetcher }) => {
 };
 
 // High-level "Composition Root" decides which fetcher to use
-// <UserList fetcher={api.getUsers} />;
+const CompTree = () => <UserList fetcher={api.getUsers} />;
 
 // How to avoid abstraction hell
 

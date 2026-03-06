@@ -25,7 +25,7 @@ const SearchBar = ({ children }) => (
 // If you have to pass more than 3 props to adjust underlying button slyle then it's a sign to go IoC path
 
 // Practical examples
-// Pattern: Fixed UI. Потребителю легко использовать — минимум кода.
+// Pattern: Fixed UI
 const DeleteConfirmation = ({ onConfirm }) => (
   <div>
     <p>Are you sure?</p>
@@ -64,10 +64,12 @@ const BetterSearchBar = ({ onSearch, children }) => (
 );
 
 // Usage 1: Standard (Convenience)
-// <SearchBar onSearch={handleSearch} />
+const CompOne = () => <SearchBar onSearch={handleSearch} />;
 
 // Usage 2: Custom (IoC in action)
-// <SearchBar>
-//  <IconButton icon="voice-search" onClick={handleVoice} />
-//  <button onClick={handleSearch}>GO</button>
-//</SearchBar>
+const Comptwo = () => (
+  <SearchBar>
+    <IconButton icon="voice-search" onClick={handleVoice} />
+    <button onClick={handleSearch}>GO</button>
+  </SearchBar>
+);
